@@ -2,8 +2,12 @@ from flask import Flask, request, jsonify, send_file
 from pytube import YouTube
 from pydub import AudioSegment
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+# Enable CORS for your Chrome extension by specifying its origin
+CORS(app, resources={r"/*": {"origins": ["chrome-extension://bcnfpmnkkgbhbnjbbcedacfinkfklhhl"]}})
 
 @app.route('/convert', methods=['POST'])
 def convert_video_to_mp3():
